@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hery Rasolofoarimanana — Réalisateur audiovisuel & Designer 3D | Kopenao</title>
+<meta name="description" content="Portfolio de Hery Rasolofoarimanana, réalisateur audiovisuel, designer 3D et concepteur créatif, fondateur de l'agence Kopenao à Madagascar. 25 ans d'expérience en audiovisuel.">
+
+<!-- Google Fonts : Fraunces (titres) + Space Grotesk (texte courant) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- lite-youtube-embed : facade YouTube légère, lecture inline -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.3/src/lite-yt-embed.css">
+
+<!-- Icônes Lucide -->
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.454.0/dist/umd/lucide.min.js" defer></script>
+
+<link rel="stylesheet" href="css/styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='none' stroke='%23155463' stroke-width='8'/%3E%3Ccircle cx='50' cy='50' r='18' fill='%23155463'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- ================= DÉCOR AMBIANT (formes flottantes en arrière-plan) ================= -->
+<div class="ambient-decor" aria-hidden="true">
+  <svg class="decor-shape decor-aperture" style="--delay:0s; --top:8%; --left:4%;" viewBox="0 0 100 100" width="90">
+    <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <g stroke="currentColor" stroke-width="1.5" fill="none">
+      <path d="M50 6 L60 32 L44 32 Z"/>
+      <path d="M94 50 L68 60 L68 44 Z"/>
+      <path d="M50 94 L40 68 L56 68 Z"/>
+      <path d="M6 50 L32 40 L32 56 Z"/>
+    </g>
+  </svg>
+  <svg class="decor-shape decor-sprocket" style="--delay:-4s; --top:22%; --left:88%;" viewBox="0 0 100 100" width="70">
+    <rect x="10" y="10" width="80" height="80" rx="14" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="30" y="30" width="40" height="40" rx="6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  </svg>
+  <svg class="decor-shape decor-play" style="--delay:-2s; --top:62%; --left:6%;" viewBox="0 0 100 100" width="60">
+    <polygon points="24,14 88,50 24,86" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  </svg>
+  <svg class="decor-shape decor-corner" style="--delay:-6s; --top:78%; --left:82%;" viewBox="0 0 100 100" width="80">
+    <path d="M8 8 H36 M8 8 V36" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path d="M92 8 H64 M92 8 V36" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path d="M8 92 H36 M8 92 V64" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path d="M92 92 H64 M92 92 V64" fill="none" stroke="currentColor" stroke-width="2"/>
+  </svg>
+  <svg class="decor-shape decor-aperture decor-small" style="--delay:-8s; --top:40%; --left:48%;" viewBox="0 0 100 100" width="46">
+    <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="50" cy="50" r="16" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  </svg>
+  <svg class="decor-shape decor-film" style="--delay:-10s; --top:5%; --left:60%;" viewBox="0 0 160 60" width="110">
+    <rect x="2" y="2" width="156" height="56" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="14" cy="10" r="3" fill="currentColor"/><circle cx="14" cy="30" r="3" fill="currentColor"/><circle cx="14" cy="50" r="3" fill="currentColor"/>
+    <circle cx="146" cy="10" r="3" fill="currentColor"/><circle cx="146" cy="30" r="3" fill="currentColor"/><circle cx="146" cy="50" r="3" fill="currentColor"/>
+  </svg>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a href="#accueil" class="logo" aria-label="Kopenao — Accueil">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="34" height="34">
+          <circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="2.4"/>
+          <polygon points="15,12 30,20 15,28" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="logo-text">Kopenao</span>
+    </a>
+
+    <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+      <ul>
+        <li><a href="#accueil"><i data-lucide="home"></i><span>Accueil</span></a></li>
+        <li><a href="#a-propos"><i data-lucide="user"></i><span>À propos</span></a></li>
+        <li><a href="#parcours"><i data-lucide="milestone"></i><span>Parcours</span></a></li>
+        <li><a href="#formation"><i data-lucide="graduation-cap"></i><span>Formation</span></a></li>
+        <li><a href="#projets"><i data-lucide="clapperboard"></i><span>Projets</span></a></li>
+        <li><a href="#contact"><i data-lucide="mail"></i><span>Contact</span></a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Basculer le thème clair / sombre">
+        <i data-lucide="sun" class="icon-sun"></i>
+        <i data-lucide="moon" class="icon-moon"></i>
+      </button>
+      <a href="#contact" class="btn btn-primary btn-sm header-cta">
+        <i data-lucide="send"></i><span>Me contacter</span>
+      </a>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="accueil">
+    <div class="container hero-inner">
+      <div class="hero-text reveal">
+        <p class="eyebrow"><i data-lucide="aperture"></i> Réalisateur audiovisuel &amp; designer 3D</p>
+        <h1 class="hero-title">Hery <span class="highlight">Rasolofoarimanana</span></h1>
+        <p class="hero-subtitle">Réalisateur audiovisuel • Designer 3D • Concepteur créatif</p>
+        <p class="hero-tagline">25 ans à mettre en images les idées, les marques et les institutions — entre Antananarivo et Nosy Be, Madagascar. Fondateur de <strong>Kopenao</strong>, agence de communication et de création audiovisuelle.</p>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">25+</span>
+            <span class="stat-label">Ans d'expérience</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">2025</span>
+            <span class="stat-label">Fondation de Kopenao</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">2</span>
+            <span class="stat-label">Antananarivo &amp; Nosy Be</span>
+          </div>
+        </div>
+
+        <div class="hero-cta">
+          <a href="#projets" class="btn btn-primary"><i data-lucide="play"></i><span>Voir le showreel</span></a>
+          <a href="#contact" class="btn btn-outline"><i data-lucide="mail"></i><span>Me contacter</span></a>
+        </div>
+      </div>
+
+      <div class="hero-portrait reveal">
+        <div class="portrait-ring" aria-hidden="true"></div>
+        <div class="portrait-frame">
+          <img src="assets/portrait.jpg" alt="Portrait de Hery Rasolofoarimanana" width="480" height="480">
+        </div>
+        <div class="portrait-badge">
+          <i data-lucide="clapperboard"></i>
+          <span>Kopenao</span>
+        </div>
+      </div>
+    </div>
+    <a href="#a-propos" class="scroll-cue" aria-label="Faire défiler vers le bas">
+      <i data-lucide="chevron-down"></i>
+    </a>
+  </section>
+
+  <!-- ================= À PROPOS & COMPÉTENCES ================= -->
+  <section class="section" id="a-propos">
+    <div class="container">
+      <p class="section-subtitle reveal"><i data-lucide="user"></i> À propos</p>
+      <h2 class="section-title reveal">Qui je suis</h2>
+
+      <div class="about-grid">
+        <div class="about-bio reveal">
+          <p>
+            Réalisateur audiovisuel, designer 3D et concepteur créatif malgache, je cumule plus de
+            <strong>25 années d'expérience</strong> dans l'audiovisuel : réalisation, montage, habillage TV,
+            design 2D/3D et direction de production. J'ai notamment exercé comme réalisateur vidéo officiel
+            auprès du Cabinet du Président de la République de Madagascar, et dirigé la production de
+            plusieurs stations audiovisuelles nationales.
+          </p>
+          <p>
+            En 2025, j'ai fondé <strong>Kopenao</strong>, une agence de communication et de création
+            audiovisuelle basée à Madagascar, à travers laquelle j'accompagne institutions, marques et
+            événements dans la conception et la réalisation de contenus vidéo et 3D à fort impact.
+          </p>
+
+          <h3 class="about-block-title"><i data-lucide="languages"></i> Langues</h3>
+          <ul class="lang-list">
+            <li class="lang-item">
+              <span class="lang-name">Français</span>
+              <span class="lang-level" data-level="4" aria-label="Niveau C1">
+                <span class="lang-level-fill"></span>
+              </span>
+              <span class="lang-tag">C1</span>
+            </li>
+            <li class="lang-item">
+              <span class="lang-name">Anglais</span>
+              <span class="lang-level" data-level="2" aria-label="Niveau A2">
+                <span class="lang-level-fill"></span>
+              </span>
+              <span class="lang-tag">A2</span>
+            </li>
+            <li class="lang-item">
+              <span class="lang-name">Malagasy</span>
+              <span class="lang-level" data-level="5" aria-label="Langue maternelle">
+                <span class="lang-level-fill"></span>
+              </span>
+              <span class="lang-tag">Natif</span>
+            </li>
+          </ul>
+
+          <h3 class="about-block-title"><i data-lucide="heart"></i> Centres d'intérêt</h3>
+          <ul class="interest-list">
+            <li><i data-lucide="trending-up"></i> Tendances</li>
+            <li><i data-lucide="box"></i> Création 3D</li>
+            <li><i data-lucide="plane"></i> Voyages</li>
+            <li><i data-lucide="dumbbell"></i> Sport</li>
+          </ul>
+        </div>
+
+        <div class="about-skills reveal">
+          <h3 class="about-block-title"><i data-lucide="wrench"></i> Logiciels &amp; outils</h3>
+          <div class="skill-pills">
+            <span class="pill"><i data-lucide="film"></i> Adobe Premiere CC</span>
+            <span class="pill"><i data-lucide="clapperboard"></i> DaVinci Resolve</span>
+            <span class="pill"><i data-lucide="pen-tool"></i> Adobe Illustrator CC</span>
+            <span class="pill"><i data-lucide="sparkles"></i> After Effects CC</span>
+            <span class="pill"><i data-lucide="image"></i> Photoshop CC</span>
+            <span class="pill"><i data-lucide="box"></i> 3ds Max</span>
+            <span class="pill"><i data-lucide="shapes"></i> Cinema 4D</span>
+            <span class="pill"><i data-lucide="cuboid"></i> Blender</span>
+          </div>
+
+          <div class="mini-card">
+            <i data-lucide="map-pin"></i>
+            <div>
+              <strong>Basé à Madagascar</strong>
+              <p>Antananarivo &amp; Nosy Be — disponible pour missions sur toute l'île et à l'international.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PARCOURS PROFESSIONNEL ================= -->
+  <section class="section section-alt" id="parcours">
+    <div class="container">
+      <p class="section-subtitle reveal"><i data-lucide="milestone"></i> Expérience</p>
+      <h2 class="section-title reveal">Parcours professionnel</h2>
+
+      <ol class="timeline">
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"><i data-lucide="rocket"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2025 — Aujourd'hui</span>
+            <h3>Fondateur &amp; Directeur Créatif — Kopenao</h3>
+            <p>Agence de communication et de création audiovisuelle.</p>
+          </div>
+        </li>
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"><i data-lucide="landmark"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2019 — 2025</span>
+            <h3>Chargé de mission — Cabinet du Président de la République</h3>
+            <p>Producteur cameraman et réalisateur vidéo officiel pour la République de Madagascar.</p>
+          </div>
+        </li>
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"><i data-lucide="tv"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2016 — Aujourd'hui</span>
+            <h3>Responsable de production &amp; Réalisateur — Station VIVA</h3>
+            <p>Responsable de production et réalisateur d'émissions au sein de la station audiovisuelle VIVA.</p>
+          </div>
+        </li>
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"><i data-lucide="camera"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2014 — 2016</span>
+            <h3>Video Manager — Hôtel Andilana Beach, Nosy Be</h3>
+            <p>Hôtel lauréat des World Travel Awards 2016 — World's Leading Beach Resort.</p>
+          </div>
+        </li>
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"><i data-lucide="clapperboard"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2008 — 2014</span>
+            <h3>Directeur de Production — Viva Télévision</h3>
+            <p>Infographiste, monteur vidéo, réalisateur, designer 2D/3D.</p>
+          </div>
+        </li>
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"><i data-lucide="coffee"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2007 — 2008</span>
+            <h3>Réalisateur, Infographiste &amp; Monteur vidéo — Graphixlab RTA</h3>
+            <p>Pour l'émission matinale « Dite sa Café ».</p>
+          </div>
+        </li>
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"><i data-lucide="scissors"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2002 — 2007</span>
+            <h3>Responsable Monteur Vidéo &amp; Habillage TV — Station Radio Télé MBS</h3>
+            <p>Nommé par le consultant américain Jon Alan Petrovich, ancien Vice-Président de CNN.</p>
+          </div>
+        </li>
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"><i data-lucide="video"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2000 — 2002</span>
+            <h3>Monteur &amp; Régisseur — Radio Télévision Record</h3>
+          </div>
+        </li>
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"><i data-lucide="calendar-days"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Avril 1999 — 2000</span>
+            <h3>Responsable technique — Agence TV Match</h3>
+            <p>Agence de communication, créateur d'événements.</p>
+          </div>
+        </li>
+        <li class="timeline-item reveal">
+          <div class="timeline-marker"><i data-lucide="settings"></i></div>
+          <div class="timeline-content">
+            <span class="timeline-date">1997 — 1999</span>
+            <h3>Chef de section technique — Océanie Télévision (OTV)</h3>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= FORMATION ================= -->
+  <section class="section" id="formation">
+    <div class="container">
+      <p class="section-subtitle reveal"><i data-lucide="graduation-cap"></i> Formation</p>
+      <h2 class="section-title reveal">Formation &amp; diplômes</h2>
+
+      <div class="formation-grid">
+        <div class="formation-col reveal">
+          <h3><i data-lucide="hammer"></i> Formation technique et professionnelle</h3>
+          <ul class="formation-list">
+            <li>
+              <span class="formation-year">2006</span>
+              <div>
+                <strong>Formation en production télévisuelle</strong>
+                <p>Spécialisée en montage et réalisation, auprès d'Anja Bombelli, experte suisse du cinéma.</p>
+              </div>
+            </li>
+            <li>
+              <span class="formation-year">1998–1999</span>
+              <div>
+                <strong>Diplôme de Technicien Supérieur en Électronique Télévision</strong>
+                <p>Eurelec</p>
+              </div>
+            </li>
+            <li>
+              <span class="formation-year">1997–1998</span>
+              <div>
+                <strong>Attestation en Électronique Télévision</strong>
+                <p>Technimad</p>
+              </div>
+            </li>
+            <li>
+              <span class="formation-year">1995–1996</span>
+              <div>
+                <strong>Brevet de Technicien en Radio Récepteur-Émetteur</strong>
+                <p>Eurelec</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="formation-col reveal">
+          <h3><i data-lucide="book-open"></i> Formation générale</h3>
+          <ul class="formation-list">
+            <li>
+              <span class="formation-year">1994</span>
+              <div>
+                <strong>Diplôme de Baccalauréat</strong>
+                <p>Série D</p>
+              </div>
+            </li>
+            <li>
+              <span class="formation-year">1991</span>
+              <div>
+                <strong>Diplôme B.E.P.C.</strong>
+              </div>
+            </li>
+            <li>
+              <span class="formation-year">1986</span>
+              <div>
+                <strong>Diplôme C.E.P.E.</strong>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROJETS / SHOWREEL ================= -->
+  <section class="section section-alt" id="projets">
+    <div class="container">
+      <p class="section-subtitle reveal"><i data-lucide="clapperboard"></i> Showreel</p>
+      <h2 class="section-title reveal">Projets &amp; réalisations</h2>
+      <p class="section-lead reveal">Une sélection de réalisations, designs 3D et productions institutionnelles et événementielles. Cliquez sur une vignette pour lancer la lecture directement sur la page.</p>
+
+      <div class="filter-chips reveal" id="filter-chips" role="tablist" aria-label="Filtrer les projets par catégorie">
+        <button class="chip is-active" data-filter="all" type="button"><i data-lucide="layout-grid"></i> Tous</button>
+        <button class="chip" data-filter="Réalisation" type="button"><i data-lucide="clapperboard"></i> Réalisation</button>
+        <button class="chip" data-filter="Design 3D" type="button"><i data-lucide="box"></i> Design 3D</button>
+        <button class="chip" data-filter="Institutionnel" type="button"><i data-lucide="landmark"></i> Institutionnel</button>
+        <button class="chip" data-filter="Événementiel" type="button"><i data-lucide="party-popper"></i> Événementiel</button>
+      </div>
+
+      <div class="project-grid reveal" id="project-grid">
+        <!-- Les cartes projets sont générées dynamiquement depuis js/script.js (tableau PROJECTS) -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="section" id="contact">
+    <div class="container">
+      <p class="section-subtitle reveal"><i data-lucide="mail"></i> Contact</p>
+      <h2 class="section-title reveal">Discutons de votre projet</h2>
+      <p class="section-lead reveal">Une idée de film institutionnel, un design 3D ou un événement à couvrir ? Contactez-moi directement.</p>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <a class="contact-item" href="tel:+261347030333">
+            <span class="contact-icon"><i data-lucide="phone"></i></span>
+            <span>
+              <strong>Téléphone</strong>
+              <span>+261 34 70 303 33</span>
+            </span>
+          </a>
+          <a class="contact-item" href="https://wa.me/261327513000" target="_blank" rel="noopener">
+            <span class="contact-icon"><i data-lucide="message-circle"></i></span>
+            <span>
+              <strong>WhatsApp</strong>
+              <span>+261 32 75 130 00</span>
+            </span>
+          </a>
+          <a class="contact-item" href="mailto:solofo_dim@yahoo.fr">
+            <span class="contact-icon"><i data-lucide="mail"></i></span>
+            <span>
+              <strong>Email</strong>
+              <span>solofo_dim@yahoo.fr</span>
+            </span>
+          </a>
+          <a class="contact-item" href="https://www.google.com/maps/search/?api=1&query=III+S+241+D+Ouest+Fiadanana+Madagascar" target="_blank" rel="noopener">
+            <span class="contact-icon"><i data-lucide="map-pin"></i></span>
+            <span>
+              <strong>Adresse</strong>
+              <span>III S 241 D Ouest Fiadanana, Madagascar</span>
+            </span>
+          </a>
+
+          <div class="social-links">
+            <!-- Remplacer les "#" par les vraies URLs -->
+            <a href="#" target="_blank" rel="noopener" aria-label="Portfolio"><i data-lucide="briefcase"></i> Portfolio</a>
+            <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i> LinkedIn</a>
+            <a href="#" target="_blank" rel="noopener" aria-label="Kopenao"><i data-lucide="clapperboard"></i> Kopenao</a>
+          </div>
+        </div>
+
+        <!-- Formulaire statique basé sur mailto (aucun backend) -->
+        <form class="contact-form reveal" id="contact-form">
+          <div class="form-field">
+            <label for="cf-name"><i data-lucide="user"></i> Nom complet</label>
+            <input type="text" id="cf-name" name="name" placeholder="Votre nom" required>
+          </div>
+          <div class="form-field">
+            <label for="cf-email"><i data-lucide="at-sign"></i> Email</label>
+            <input type="email" id="cf-email" name="email" placeholder="vous@exemple.com" required>
+          </div>
+          <div class="form-field">
+            <label for="cf-subject"><i data-lucide="tag"></i> Sujet</label>
+            <input type="text" id="cf-subject" name="subject" placeholder="Objet de votre message" required>
+          </div>
+          <div class="form-field">
+            <label for="cf-message"><i data-lucide="message-square"></i> Message</label>
+            <textarea id="cf-message" name="message" rows="5" placeholder="Décrivez votre projet..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">
+            <i data-lucide="send"></i><span>Envoyer le message</span>
+          </button>
+          <p class="form-note">Ce formulaire ouvre votre client email (mailto), aucune donnée n'est stockée sur ce site.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="28" height="28">
+          <circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="2.4"/>
+          <polygon points="15,12 30,20 15,28" fill="currentColor"/>
+        </svg>
+      </span>
+      <span>Kopenao</span>
+    </div>
+    <p class="footer-text">© <span id="year"></span> Hery Rasolofoarimanana — Kopenao. Tous droits réservés.</p>
+    <button class="back-to-top" id="back-to-top" type="button" aria-label="Retour en haut de page">
+      <i data-lucide="arrow-up"></i>
+    </button>
+  </div>
+</footer>
+
+<!-- lite-youtube-embed : lecture inline des vidéos YouTube -->
+<script src="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.3/src/lite-yt-embed.js" defer></script>
+<script src="js/script.js" defer></script>
+</body>
+</html>

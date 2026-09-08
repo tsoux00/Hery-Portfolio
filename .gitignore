@@ -1,0 +1,15 @@
+# OS junk
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor junk
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node tooling (if any build tooling gets added later)
+node_modules/
+npm-debug.log*
