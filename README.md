@@ -14,6 +14,7 @@ css/styles.css     Système de design (couleurs, typographie, mise en page, anim
 js/script.js       Thème clair/sombre, navigation mobile, révélation au scroll,
                    galerie de projets filtrable, formulaire de contact
 assets/            Images (portrait, etc.)
+assets/designs/    Visuels de la section "Design graphique" (à ajouter)
 ```
 
 ## Ouvrir le site en local
@@ -53,6 +54,29 @@ automatiquement.
 Les identifiants vidéo actuellement dans le tableau sont des **exemples de
 démonstration** (marqués `// REMPLACER par le vrai lien`) : à remplacer par les vrais
 projets avant mise en ligne.
+
+## Mettre à jour la section Design graphique
+
+La galerie de créations graphiques (section "Design graphique") est générée depuis un
+tableau JavaScript, dans `js/script.js`, repérable par le commentaire `DESIGNS`. Chaque
+entrée ressemble à ceci :
+
+```js
+{ id: "d1", title: "Titre du visuel", category: "Identité visuelle", description: "Courte description.", image: "assets/designs/design-1.jpg" }
+```
+
+Pour ajouter un vrai visuel :
+
+1. Déposer le fichier image dans le dossier `assets/designs/`.
+2. Faire correspondre le chemin `image` de l'entrée au nom du fichier déposé
+   (ou modifier le chemin pour qu'il pointe vers le bon fichier).
+3. Adapter `title`, `description` et `category` si besoin.
+4. `category` doit être l'une des valeurs suivantes pour rester compatible avec les
+   filtres : `Identité visuelle`, `Affiche`, `Rendu 3D`, `Habillage TV`.
+
+Tant qu'aucun fichier n'existe au chemin indiqué, une vignette de remplacement
+("Visuel à venir") s'affiche automatiquement à la place de l'image — aucune action
+supplémentaire n'est nécessaire, il suffit d'ajouter les fichiers plus tard.
 
 ## Mettre à jour les liens de contact
 

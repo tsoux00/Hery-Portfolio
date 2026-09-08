@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initLanguageBars();
   initProjects();
+  initDesigns();
   initContactForm();
   initBackToTop();
   document.getElementById("year").textContent = new Date().getFullYear();
@@ -154,7 +155,7 @@ const PROJECTS = [
 
 function initProjects() {
   const grid = document.getElementById("project-grid");
-  const chips = document.querySelectorAll(".chip");
+  const chips = document.querySelectorAll("#filter-chips .chip");
 
   function render(filter) {
     grid.innerHTML = "";
@@ -192,6 +193,88 @@ function escapeHtml(str) {
   const div = document.createElement("div");
   div.textContent = str;
   return div.innerHTML;
+}
+
+/* -------------------------------------------------------------------- */
+/* Design graphique                                                       */
+/* -------------------------------------------------------------------- */
+
+/**
+ * Tableau des créations graphiques — à éditer librement.
+ * - id          : identifiant unique (chaîne)
+ * - title       : titre affiché sur la carte
+ * - category    : une des catégories utilisées dans les filtres
+ *                 ("Identité visuelle", "Affiche", "Rendu 3D", "Habillage TV")
+ * - description : courte description du visuel
+ * - image       : chemin vers le fichier image, ex. "assets/designs/mon-visuel.jpg"
+ *
+ * ⚠️ Toutes les entrées ci-dessous sont des EMPLACEMENTS PROVISOIRES (placeholders).
+ *    Tant que le fichier image n'existe pas dans assets/designs/, une vignette de
+ *    remplacement s'affiche automatiquement. Il suffit de déposer le vrai fichier
+ *    au chemin indiqué (ou de modifier `image`) pour qu'il apparaisse.
+ */
+const DESIGNS = [
+  { id: "d1", title: "Identité visuelle — Kopenao", category: "Identité visuelle", description: "Logo et charte graphique de l'agence Kopenao.", image: "assets/designs/design-1.jpg" }, // REMPLACER par le vrai visuel
+  { id: "d2", title: "Affiche événementielle", category: "Affiche", description: "Affiche de communication pour un événement institutionnel.", image: "assets/designs/design-2.jpg" }, // REMPLACER par le vrai visuel
+  { id: "d3", title: "Rendu 3D — produit", category: "Rendu 3D", description: "Modélisation et rendu 3D réalisés sous 3ds Max / Cinema 4D.", image: "assets/designs/design-3.jpg" }, // REMPLACER par le vrai visuel
+  { id: "d4", title: "Habillage TV — génériques", category: "Habillage TV", description: "Habillage graphique et génériques d'émission.", image: "assets/designs/design-4.jpg" }, // REMPLACER par le vrai visuel
+  { id: "d5", title: "Affiche institutionnelle", category: "Affiche", description: "Support de communication pour une institution publique.", image: "assets/designs/design-5.jpg" }, // REMPLACER par le vrai visuel
+  { id: "d6", title: "Rendu 3D — architecture", category: "Rendu 3D", description: "Visualisation 3D d'un espace architectural.", image: "assets/designs/design-6.jpg" }, // REMPLACER par le vrai visuel
+];
+
+function initDesigns() {
+  const grid = document.getElementById("design-grid");
+  if (!grid) return;
+  const chips = document.querySelectorAll("#design-filter-chips .chip");
+
+  function render(filter) {
+    grid.innerHTML = "";
+    DESIGNS.forEach((item) => {
+      const isShown = filter === "all" || item.category === filter;
+      const card = document.createElement("article");
+      card.className = "design-card" + (isShown ? " is-shown" : "");
+      card.dataset.category = item.category;
+
+      const thumb = document.createElement("div");
+      thumb.className = "design-thumb";
+      const img = document.createElement("img");
+      img.src = item.image;
+      img.alt = item.title;
+      img.loading = "lazy";
+      img.addEventListener("error", () => {
+        thumb.innerHTML = "";
+        const placeholder = document.createElement("div");
+        placeholder.className = "design-placeholder";
+        placeholder.innerHTML = '<i data-lucide="image"></i><span>Visuel à venir</span>';
+        thumb.appendChild(placeholder);
+        if (window.lucide) lucide.createIcons();
+      });
+      thumb.appendChild(img);
+
+      const body = document.createElement("div");
+      body.className = "project-body";
+      body.innerHTML = `
+        <span class="project-category"><i data-lucide="tag"></i> ${escapeHtml(item.category)}</span>
+        <h3 class="project-title">${escapeHtml(item.title)}</h3>
+        <p class="design-desc">${escapeHtml(item.description)}</p>
+      `;
+
+      card.appendChild(thumb);
+      card.appendChild(body);
+      grid.appendChild(card);
+    });
+    if (window.lucide) lucide.createIcons();
+  }
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      chips.forEach((c) => c.classList.remove("is-active"));
+      chip.classList.add("is-active");
+      render(chip.dataset.filter);
+    });
+  });
+
+  render("all");
 }
 
 /* -------------------------------------------------------------------- */
