@@ -199,6 +199,9 @@ svg { display: block; }
   border-bottom: 1px solid var(--border);
   transition: background var(--transition), border-color var(--transition);
 }
+.site-header .container {
+  max-width: 1320px;
+}
 .header-inner {
   display: flex;
   align-items: center;
@@ -209,30 +212,43 @@ svg { display: block; }
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  min-width: 0;
   color: var(--primary-strong);
 }
-.logo-mark { display: flex; color: var(--accent-strong); }
+.logo-mark { display: flex; align-items: center; flex-shrink: 0; }
+.logo-mark img { width: 30px; height: 30px; object-fit: contain; display: block; }
 .logo-text {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  /* "hery.rasolofoarimanana" est bien plus long que l'ancien "Kopenao" :
+     une taille nettement plus petite et fluide est nécessaire pour qu'il
+     tienne dans l'en-tête à côté de la navigation, à toutes les largeurs. */
+  font-size: clamp(0.62rem, 2.4vw, 0.86rem);
   font-weight: 700;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.logo-suffix {
+  color: var(--accent-strong);
+  font-style: italic;
+  font-weight: 500;
 }
 
 .main-nav ul {
   display: flex;
-  gap: 4px;
+  gap: 2px;
 }
 .main-nav a {
   display: flex;
   align-items: center;
-  gap: 7px;
-  padding: 9px 14px;
+  gap: 6px;
+  padding: 9px 11px;
   border-radius: 999px;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 500;
   color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: background var(--transition), color var(--transition);
 }
 .main-nav a:hover, .main-nav a:focus-visible {
@@ -428,12 +444,32 @@ svg { display: block; }
   bottom: 28px;
   left: 50%;
   transform: translateX(-50%);
-  color: var(--text-muted);
-  animation: bounce 2.2s ease-in-out infinite;
 }
-@keyframes bounce {
-  0%, 100% { transform: translate(-50%, 0); }
-  50% { transform: translate(-50%, 8px); }
+.mouse-scroll {
+  display: flex;
+  justify-content: center;
+  width: 26px;
+  height: 42px;
+  padding-top: 8px;
+  border: 2px solid var(--text-muted);
+  border-radius: 14px;
+  box-sizing: border-box;
+  transition: border-color var(--transition);
+}
+.scroll-cue:hover .mouse-scroll { border-color: var(--primary); }
+.mouse-wheel {
+  width: 4px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--text-muted);
+  animation: mouse-scroll-wheel 1.8s ease-in-out infinite;
+}
+.scroll-cue:hover .mouse-wheel { background: var(--primary); }
+@keyframes mouse-scroll-wheel {
+  0% { transform: translateY(0); opacity: 1; }
+  55% { transform: translateY(14px); opacity: 0; }
+  56% { transform: translateY(0); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
 }
 
 /* ==========================================================================
@@ -583,6 +619,12 @@ svg { display: block; }
   border-radius: var(--radius-md);
   background: var(--surface);
   border: 1px solid var(--border);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.mini-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+  border-color: var(--primary);
 }
 .mini-card i { width: 22px; height: 22px; color: var(--accent-strong); flex-shrink: 0; margin-top: 2px; }
 .mini-card p { margin: 4px 0 0; font-size: 0.9rem; }
@@ -598,13 +640,13 @@ svg { display: block; }
 }
 .timeline-item {
   position: relative;
-  padding-bottom: 42px;
+  padding-bottom: 34px;
 }
 .timeline-item:last-child { padding-bottom: 0; }
 .timeline-marker {
   position: absolute;
   left: -63px;
-  top: 0;
+  top: 8px;
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -613,7 +655,8 @@ svg { display: block; }
   color: var(--primary);
   display: grid;
   place-items: center;
-  box-shadow: 0 0 0 6px var(--bg-alt), var(--section-bg-shadow, none);
+  box-shadow: 0 0 0 6px var(--bg);
+  z-index: 1;
 }
 .timeline-marker i { width: 17px; height: 17px; }
 .timeline-date {
@@ -622,12 +665,38 @@ svg { display: block; }
   color: var(--accent-strong);
   font-size: 0.85rem;
   letter-spacing: 0.02em;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
-.timeline-content h3 {
+.timeline-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px 26px;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.timeline-content:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+  border-color: var(--primary);
+}
+.timeline-role {
   font-size: 1.15rem;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
+.timeline-company {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--primary-strong);
+  background: var(--primary-soft);
+  padding: 5px 14px 5px 10px;
+  border-radius: 999px;
+  margin: 0 0 14px;
+}
+.timeline-company i { width: 14px; height: 14px; }
 .timeline-content p { margin: 0 0 14px; }
 .timeline-content p:last-child { margin-bottom: 0; }
 
@@ -660,9 +729,76 @@ svg { display: block; }
   border: 1px solid transparent;
 }
 
-/* le fond de la section alterne, on ajuste le halo du marker */
-#parcours .timeline-marker { box-shadow: 0 0 0 6px var(--bg-alt); }
-#parcours .tool-tag { background: var(--surface); border-color: var(--border); }
+/* ==========================================================================
+   Pays visités
+   ========================================================================== */
+.countries-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 40px;
+}
+.country-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  width: 58px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: default;
+  transition: width 280ms cubic-bezier(.4,0,.2,1), border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+.country-item:hover,
+.country-item:focus-visible {
+  width: var(--expand-w, 170px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+/* Ondulation décorative qui se propage vers les cases suivantes, jusqu'à la
+   dernière, aussi bien à l'entrée qu'à la sortie du survol (voir js/script.js).
+   N'affecte jamais `width` : ne peut donc jamais interférer avec la vraie
+   poussée gérée nativement par la mise en page flexbox ci-dessus. */
+.country-item.is-rippling {
+  animation: country-ripple 380ms cubic-bezier(.22,1,.36,1);
+  animation-delay: var(--ripple-delay, 0ms);
+}
+@keyframes country-ripple {
+  0% { transform: translateX(0) scale(1); }
+  40% { transform: translateX(5px) scale(1.05); }
+  100% { transform: translateX(0) scale(1); }
+}
+.country-flag {
+  width: 26px;
+  height: 19px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px var(--border-strong);
+}
+.country-name {
+  display: inline-block;
+  margin-left: 0;
+  max-width: 0;
+  opacity: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  transition: opacity 160ms ease, margin-left 280ms cubic-bezier(.4,0,.2,1), max-width 280ms cubic-bezier(.4,0,.2,1);
+}
+.country-item:hover .country-name,
+.country-item:focus-visible .country-name {
+  margin-left: 10px;
+  max-width: 220px;
+  opacity: 1;
+  transition: opacity 220ms ease 90ms, margin-left 280ms cubic-bezier(.4,0,.2,1), max-width 280ms cubic-bezier(.4,0,.2,1);
+}
 
 /* ==========================================================================
    Formation
@@ -681,22 +817,21 @@ svg { display: block; }
   margin-bottom: 24px;
 }
 .formation-col h3 i { width: 20px; height: 20px; color: var(--primary); }
-.formation-list { display: flex; flex-direction: column; gap: 20px; }
-.formation-list li {
-  display: grid;
-  grid-template-columns: 90px 1fr;
-  gap: 16px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border);
+
+/* Réutilise le style "carte" de la timeline du Parcours professionnel pour
+   garder une identité visuelle cohérente entre les deux sections. */
+.formation-timeline {
+  margin-top: 28px;
 }
-.formation-list li:last-child { border-bottom: none; }
-.formation-year {
-  font-weight: 700;
-  color: var(--primary);
-  font-size: 0.88rem;
+.formation-timeline .timeline-item {
+  padding-bottom: 24px;
 }
-.formation-list strong { display: block; margin-bottom: 4px; font-size: 0.98rem; }
-.formation-list p { margin: 0; font-size: 0.9rem; }
+.formation-timeline .timeline-content {
+  padding: 18px 20px;
+}
+.formation-timeline .timeline-role {
+  font-size: 1rem;
+}
 
 /* ==========================================================================
    Projets / Showreel
@@ -875,6 +1010,12 @@ svg { display: block; }
   display: flex;
   flex-direction: column;
   gap: 20px;
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+.contact-form:focus-within,
+.contact-form:hover {
+  box-shadow: var(--shadow);
+  border-color: var(--primary);
 }
 .form-field { display: flex; flex-direction: column; gap: 8px; }
 .form-field label {
@@ -930,7 +1071,16 @@ svg { display: block; }
   font-size: 1.1rem;
   color: var(--amber-400);
 }
+.footer-brand .logo-mark img { width: 28px; height: 28px; }
+.footer-texts { display: flex; flex-direction: column; gap: 4px; text-align: center; }
 .footer-text { margin: 0; font-size: 0.85rem; color: var(--petrol-200); }
+.footer-credit { margin: 0; font-size: 0.78rem; color: var(--petrol-300); }
+.footer-credit a {
+  color: var(--amber-400);
+  font-weight: 600;
+  transition: color var(--transition);
+}
+.footer-credit a:hover { color: var(--amber-500); text-decoration: underline; }
 .back-to-top {
   width: 42px;
   height: 42px;
@@ -956,7 +1106,10 @@ svg { display: block; }
   .project-grid, .design-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 880px) {
+/* Le menu principal compte désormais 8 entrées : on bascule sur le menu
+   mobile (hamburger) plus tôt, dès qu'il n'y a plus assez de place pour
+   afficher toutes les entrées sur une seule ligne sans les compresser. */
+@media (max-width: 1220px) {
   .main-nav {
     position: fixed;
     top: 74px;
@@ -973,6 +1126,9 @@ svg { display: block; }
   .main-nav a { padding: 12px 14px; }
   .hamburger { display: grid; }
   .header-cta { display: none; }
+}
+
+@media (max-width: 880px) {
   .project-grid, .design-grid { grid-template-columns: 1fr; }
   .hero { padding: 140px 0 80px; }
   .section { padding: 80px 0; }

@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileNav();
   initScrollReveal();
   initLanguageBars();
+  initCountries();
   initProjects();
   initDesigns();
   initContactForm();
@@ -127,6 +128,127 @@ function initLanguageBars() {
     { threshold: 0.5 }
   );
   bars.forEach((el) => observer.observe(el));
+}
+
+/* -------------------------------------------------------------------- */
+/* Pays visités                                                           */
+/* -------------------------------------------------------------------- */
+
+/**
+ * Tableau des pays visités — à éditer librement.
+ * - name : nom du pays affiché au survol (en français)
+ * - code : code pays ISO 3166-1 alpha-2 (utilisé par flag-icons pour le drapeau)
+ */
+const COUNTRIES = [
+  { name: "Madagascar", code: "mg" },
+  { name: "France", code: "fr" },
+  { name: "États-Unis", code: "us" },
+  { name: "Chine", code: "cn" },
+  { name: "Japon", code: "jp" },
+  { name: "Russie", code: "ru" },
+  { name: "Émirats arabes unis", code: "ae" },
+  { name: "Guinée", code: "gn" },
+  { name: "Afrique du Sud", code: "za" },
+  { name: "Maurice", code: "mu" },
+  { name: "Égypte", code: "eg" },
+  { name: "Éthiopie", code: "et" },
+  { name: "Corée du Sud", code: "kr" },
+  { name: "Maroc", code: "ma" },
+  { name: "Sénégal", code: "sn" },
+  { name: "Zimbabwe", code: "zw" },
+  { name: "Bénin", code: "bj" },
+  { name: "Rwanda", code: "rw" },
+  { name: "Burundi", code: "bi" },
+  { name: "Kenya", code: "ke" },
+  { name: "Comores", code: "km" },
+  { name: "Tanzanie", code: "tz" },
+  { name: "Italie", code: "it" },
+  { name: "Suisse", code: "ch" },
+  { name: "Norvège", code: "no" },
+  { name: "Turquie", code: "tr" },
+  { name: "Ghana", code: "gh" },
+  { name: "Mozambique", code: "mz" },
+  { name: "Angola", code: "ao" },
+];
+
+function initCountries() {
+  const grid = document.getElementById("countries-grid");
+  if (!grid) return;
+
+  grid.innerHTML = "";
+  COUNTRIES.forEach((country) => {
+    const item = document.createElement("div");
+    item.className = "country-item";
+    item.tabIndex = 0;
+    item.setAttribute("aria-label", country.name);
+
+    const flag = document.createElement("span");
+    flag.className = `country-flag fi fi-${country.code}`;
+    flag.setAttribute("aria-hidden", "true");
+
+    const name = document.createElement("span");
+    name.className = "country-name";
+    name.textContent = country.name;
+
+    item.appendChild(flag);
+    item.appendChild(name);
+    grid.appendChild(item);
+  });
+
+  const items = Array.from(grid.querySelectorAll(".country-item"));
+
+  // Calcule, pour chaque case, la largeur exacte nécessaire au survol
+  // (drapeau + espacement + nom complet) afin que l'expansion soit fluide
+  // quelle que soit la longueur du nom du pays.
+  requestAnimationFrame(() => {
+    items.forEach((item) => {
+      const flagEl = item.querySelector(".country-flag");
+      const nameEl = item.querySelector(".country-name");
+      const horizontalPadding = 18; // 9px de padding de chaque côté de la case
+      const nameGap = 10; // marge appliquée entre le drapeau et le nom au survol
+      const safetyBuffer = 6; // marge de sécurité pour les variations de police
+      const expandedWidth =
+        flagEl.offsetWidth + nameGap + nameEl.scrollWidth + horizontalPadding + safetyBuffer;
+      item.style.setProperty("--expand-w", `${expandedWidth}px`);
+    });
+  });
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) return; // le survol CSS simple (sans ondulation) suffit
+
+  const STAGGER_MS = 28; // délai ajouté par case, en cascade, à mesure qu'on s'éloigne de la case survolée
+
+  // La case survolée grandit/rétrécit via la transition CSS normale (width, voir
+  // styles.css) — cette poussée réelle des voisines est déjà gérée nativement
+  // par la mise en page flexbox, aucune manipulation JS n'est nécessaire pour ça.
+  //
+  // On ajoute ici une ondulation purement décorative (une petite pichenette qui
+  // se propage case par case jusqu'à la dernière) déclenchée aussi bien à
+  // l'entrée qu'à la sortie du survol, via une `animation` CSS indépendante
+  // (voir .country-item.is-rippling) qui ne touche jamais `width` ni la mise en
+  // page — impossible qu'elle entre en conflit avec la vraie poussée.
+  function rippleSiblings(hoveredIndex) {
+    for (let i = hoveredIndex + 1; i < items.length; i += 1) {
+      const el = items[i];
+      const delay = (i - hoveredIndex - 1) * STAGGER_MS;
+      el.style.setProperty("--ripple-delay", `${delay}ms`);
+      el.classList.remove("is-rippling");
+      // eslint-disable-next-line no-unused-expressions
+      void el.offsetWidth; // force le redémarrage de l'animation si elle est déjà en cours
+      el.classList.add("is-rippling");
+    }
+  }
+
+  items.forEach((el) => {
+    el.addEventListener("animationend", () => el.classList.remove("is-rippling"));
+  });
+
+  items.forEach((item, index) => {
+    item.addEventListener("mouseenter", () => rippleSiblings(index));
+    item.addEventListener("mouseleave", () => rippleSiblings(index));
+    item.addEventListener("focus", () => rippleSiblings(index));
+    item.addEventListener("blur", () => rippleSiblings(index));
+  });
 }
 
 /* -------------------------------------------------------------------- */

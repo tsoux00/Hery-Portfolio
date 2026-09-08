@@ -6,6 +6,16 @@
 <title>Hery Rasolofoarimanana — Réalisateur audiovisuel & Designer 3D | Kopenao</title>
 <meta name="description" content="Portfolio de Hery Rasolofoarimanana, réalisateur audiovisuel, designer 3D et concepteur créatif, fondateur de l'agence Kopenao à Madagascar. 25 ans d'expérience en audiovisuel.">
 
+<!-- Aperçu réseaux sociaux (Open Graph / Twitter) : logo affiché lors du partage du lien -->
+<meta property="og:title" content="Hery Rasolofoarimanana — Kopenao">
+<meta property="og:description" content="Réalisateur audiovisuel, designer 3D et concepteur créatif — fondateur de l'agence Kopenao, Madagascar.">
+<meta property="og:image" content="assets/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hery Rasolofoarimanana — Kopenao">
+<meta name="twitter:description" content="Réalisateur audiovisuel, designer 3D et concepteur créatif — fondateur de l'agence Kopenao, Madagascar.">
+<meta name="twitter:image" content="assets/og.png">
+
 <!-- Google Fonts : Fraunces (titres) + Space Grotesk (texte courant) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +31,12 @@
 <script src="https://cdn.jsdelivr.net/npm/lucide@0.454.0/dist/umd/lucide.min.js" defer></script>
 
 <link rel="stylesheet" href="css/styles.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='none' stroke='%23155463' stroke-width='8'/%3E%3Ccircle cx='50' cy='50' r='18' fill='%23155463'/%3E%3C/svg%3E">
+
+<!-- Favicon (icône d'onglet) : logo Kopenao -->
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 </head>
 <body>
 
@@ -63,20 +78,18 @@
 <!-- ================= HEADER ================= -->
 <header class="site-header" id="site-header">
   <div class="container header-inner">
-    <a href="#accueil" class="logo" aria-label="Kopenao — Accueil">
+    <a href="#accueil" class="logo" aria-label="hery.rasolofoarimanana — Accueil">
       <span class="logo-mark" aria-hidden="true">
-        <svg viewBox="0 0 40 40" width="34" height="34">
-          <circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="2.4"/>
-          <polygon points="15,12 30,20 15,28" fill="currentColor"/>
-        </svg>
+        <img src="assets/logo.png" alt="" width="34" height="34">
       </span>
-      <span class="logo-text">Kopenao</span>
+      <span class="logo-text">hery<span class="logo-suffix">.rasolofoarimanana</span></span>
     </a>
 
     <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
       <ul>
         <li><a href="#accueil"><i data-lucide="home"></i><span>Accueil</span></a></li>
         <li><a href="#a-propos"><i data-lucide="user"></i><span>À propos</span></a></li>
+        <li><a href="#pays"><i data-lucide="globe"></i><span>Pays</span></a></li>
         <li><a href="#parcours"><i data-lucide="milestone"></i><span>Parcours</span></a></li>
         <li><a href="#formation"><i data-lucide="graduation-cap"></i><span>Formation</span></a></li>
         <li><a href="#projets"><i data-lucide="clapperboard"></i><span>Projets</span></a></li>
@@ -144,7 +157,9 @@
       </div>
     </div>
     <a href="#a-propos" class="scroll-cue" aria-label="Faire défiler vers le bas">
-      <i data-lucide="chevron-down"></i>
+      <span class="mouse-scroll" aria-hidden="true">
+        <span class="mouse-wheel"></span>
+      </span>
     </a>
   </section>
 
@@ -211,6 +226,7 @@
             <span class="pill"><i data-lucide="pen-tool"></i> Adobe Illustrator CC</span>
             <span class="pill"><i data-lucide="sparkles"></i> After Effects CC</span>
             <span class="pill"><i data-lucide="image"></i> Photoshop CC</span>
+            <span class="pill"><i data-lucide="headphones"></i> Adobe Audition</span>
             <span class="pill"><i data-lucide="box"></i> 3ds Max</span>
             <span class="pill"><i data-lucide="shapes"></i> Cinema 4D</span>
             <span class="pill"><i data-lucide="cuboid"></i> Blender</span>
@@ -228,8 +244,21 @@
     </div>
   </section>
 
+  <!-- ================= PAYS VISITÉS ================= -->
+  <section class="section section-alt" id="pays">
+    <div class="container">
+      <p class="section-subtitle reveal"><i data-lucide="globe"></i> Voyages</p>
+      <h2 class="section-title reveal">Pays visités</h2>
+      <p class="section-lead reveal">Au fil des tournages, missions et voyages personnels, à la découverte de nouveaux horizons.</p>
+
+      <div class="countries-grid reveal" id="countries-grid">
+        <!-- Générée dynamiquement depuis js/script.js (tableau COUNTRIES) -->
+      </div>
+    </div>
+  </section>
+
   <!-- ================= PARCOURS PROFESSIONNEL ================= -->
-  <section class="section section-alt" id="parcours">
+  <section class="section" id="parcours">
     <div class="container">
       <p class="section-subtitle reveal"><i data-lucide="milestone"></i> Expérience</p>
       <h2 class="section-title reveal">Parcours professionnel</h2>
@@ -239,7 +268,8 @@
           <div class="timeline-marker"><i data-lucide="rocket"></i></div>
           <div class="timeline-content">
             <span class="timeline-date">2025 — Aujourd'hui</span>
-            <h3>Fondateur &amp; Directeur Créatif — Kopenao</h3>
+            <h3 class="timeline-role">Fondateur &amp; Directeur Créatif</h3>
+            <p class="timeline-company"><i data-lucide="building-2"></i> Kopenao</p>
             <p>Agence de communication et de création audiovisuelle. Direction artistique et supervision de production pour des clients institutionnels et privés : films de marque, contenus de communication corporate, design 3D et couverture d'événements — de la conception du concept créatif jusqu'à la livraison finale.</p>
             <div class="timeline-tools">
               <span class="timeline-tools-label"><i data-lucide="wrench"></i> Outils</span>
@@ -249,7 +279,6 @@
               <span class="tool-tag">Illustrator</span>
               <span class="tool-tag">Photoshop</span>
               <span class="tool-tag">3ds Max</span>
-              <span class="tool-tag">Cinema 4D</span>
               <span class="tool-tag">Blender</span>
             </div>
           </div>
@@ -258,13 +287,16 @@
           <div class="timeline-marker"><i data-lucide="landmark"></i></div>
           <div class="timeline-content">
             <span class="timeline-date">2019 — 2025</span>
-            <h3>Chargé de mission — Cabinet du Président de la République</h3>
+            <h3 class="timeline-role">Chargé de mission</h3>
+            <p class="timeline-company"><i data-lucide="building-2"></i> Cabinet du Président de la République</p>
             <p>Producteur cameraman et réalisateur vidéo officiel pour la République de Madagascar. Couverture audiovisuelle des déplacements présidentiels, cérémonies d'État et événements institutionnels, de la prise de vue au montage final, dans le respect des exigences protocolaires et des délais de diffusion.</p>
             <div class="timeline-tools">
               <span class="timeline-tools-label"><i data-lucide="wrench"></i> Outils</span>
               <span class="tool-tag">Premiere Pro</span>
               <span class="tool-tag">DaVinci Resolve</span>
+              <span class="tool-tag">After Effects</span>
               <span class="tool-tag">Photoshop</span>
+              <span class="tool-tag">Blender</span>
             </div>
           </div>
         </li>
@@ -272,13 +304,15 @@
           <div class="timeline-marker"><i data-lucide="tv"></i></div>
           <div class="timeline-content">
             <span class="timeline-date">2016 — Aujourd'hui</span>
-            <h3>Responsable de production &amp; Réalisateur — Station VIVA</h3>
+            <h3 class="timeline-role">Responsable de production &amp; Réalisateur</h3>
+            <p class="timeline-company"><i data-lucide="building-2"></i> Station VIVA</p>
             <p>Responsable de production et réalisateur d'émissions au sein de la station audiovisuelle VIVA. Planification des tournages, direction technique des équipes, réalisation plateau et supervision du montage et de l'habillage graphique des programmes diffusés.</p>
             <div class="timeline-tools">
               <span class="timeline-tools-label"><i data-lucide="wrench"></i> Outils</span>
               <span class="tool-tag">Premiere Pro</span>
               <span class="tool-tag">After Effects</span>
               <span class="tool-tag">Illustrator</span>
+              <span class="tool-tag">Blender</span>
             </div>
           </div>
         </li>
@@ -286,12 +320,15 @@
           <div class="timeline-marker"><i data-lucide="camera"></i></div>
           <div class="timeline-content">
             <span class="timeline-date">2014 — 2016</span>
-            <h3>Video Manager — Hôtel Andilana Beach, Nosy Be</h3>
+            <h3 class="timeline-role">Video Manager</h3>
+            <p class="timeline-company"><i data-lucide="building-2"></i> Hôtel Andilana Beach, Nosy Be</p>
             <p>Conception et production de contenus vidéo et photo promotionnels pour l'établissement. Hôtel lauréat des World Travel Awards 2016 — World's Leading Beach Resort.</p>
             <div class="timeline-tools">
               <span class="timeline-tools-label"><i data-lucide="wrench"></i> Outils</span>
               <span class="tool-tag">Premiere Pro</span>
+              <span class="tool-tag">After Effects</span>
               <span class="tool-tag">Photoshop</span>
+              <span class="tool-tag">Blender</span>
             </div>
           </div>
         </li>
@@ -299,7 +336,8 @@
           <div class="timeline-marker"><i data-lucide="clapperboard"></i></div>
           <div class="timeline-content">
             <span class="timeline-date">2008 — 2014</span>
-            <h3>Directeur de Production — Viva Télévision</h3>
+            <h3 class="timeline-role">Directeur de Production</h3>
+            <p class="timeline-company"><i data-lucide="building-2"></i> Viva Télévision</p>
             <p>Infographiste, monteur vidéo, réalisateur, designer 2D/3D. Supervision de l'ensemble de la chaîne de production télévisuelle : conception graphique, montage, réalisation et création de designs 2D/3D pour l'habillage antenne et les contenus de la station.</p>
             <div class="timeline-tools">
               <span class="timeline-tools-label"><i data-lucide="wrench"></i> Outils</span>
@@ -307,7 +345,6 @@
               <span class="tool-tag">After Effects</span>
               <span class="tool-tag">Illustrator</span>
               <span class="tool-tag">3ds Max</span>
-              <span class="tool-tag">Cinema 4D</span>
             </div>
           </div>
         </li>
@@ -315,13 +352,15 @@
           <div class="timeline-marker"><i data-lucide="coffee"></i></div>
           <div class="timeline-content">
             <span class="timeline-date">2007 — 2008</span>
-            <h3>Réalisateur, Infographiste &amp; Monteur vidéo — Graphixlab RTA</h3>
+            <h3 class="timeline-role">Réalisateur, Infographiste &amp; Monteur vidéo</h3>
+            <p class="timeline-company"><i data-lucide="building-2"></i> Graphixlab RTA</p>
             <p>Pour l'émission matinale « Dite sa Café ». Réalisation, conception graphique et montage de l'émission, de la préparation du tournage jusqu'à la diffusion quotidienne.</p>
             <div class="timeline-tools">
               <span class="timeline-tools-label"><i data-lucide="wrench"></i> Outils</span>
               <span class="tool-tag">Premiere Pro</span>
               <span class="tool-tag">Illustrator</span>
               <span class="tool-tag">After Effects</span>
+              <span class="tool-tag">3ds Max</span>
             </div>
           </div>
         </li>
@@ -329,12 +368,14 @@
           <div class="timeline-marker"><i data-lucide="scissors"></i></div>
           <div class="timeline-content">
             <span class="timeline-date">2002 — 2007</span>
-            <h3>Responsable Monteur Vidéo &amp; Habillage TV — Station Radio Télé MBS</h3>
+            <h3 class="timeline-role">Responsable Monteur Vidéo &amp; Habillage TV</h3>
+            <p class="timeline-company"><i data-lucide="building-2"></i> Station Radio Télé MBS</p>
             <p>Nommé par le consultant américain Jon Alan Petrovich, ancien Vice-Président de CNN. Responsable du montage vidéo et de l'habillage graphique de la chaîne, dans le cadre d'un programme de modernisation technique et éditoriale de la station.</p>
             <div class="timeline-tools">
               <span class="timeline-tools-label"><i data-lucide="wrench"></i> Outils</span>
               <span class="tool-tag">Premiere Pro</span>
               <span class="tool-tag">Illustrator</span>
+              <span class="tool-tag">3ds Max</span>
             </div>
           </div>
         </li>
@@ -342,7 +383,8 @@
           <div class="timeline-marker"><i data-lucide="video"></i></div>
           <div class="timeline-content">
             <span class="timeline-date">2000 — 2002</span>
-            <h3>Monteur &amp; Régisseur — Radio Télévision Record</h3>
+            <h3 class="timeline-role">Monteur &amp; Régisseur</h3>
+            <p class="timeline-company"><i data-lucide="building-2"></i> Radio Télévision Record</p>
             <p>Montage des programmes et régie plateau lors des tournages et diffusions en direct.</p>
             <div class="timeline-tools">
               <span class="timeline-tools-label"><i data-lucide="wrench"></i> Outils</span>
@@ -354,7 +396,8 @@
           <div class="timeline-marker"><i data-lucide="calendar-days"></i></div>
           <div class="timeline-content">
             <span class="timeline-date">Avril 1999 — 2000</span>
-            <h3>Responsable technique — Agence TV Match</h3>
+            <h3 class="timeline-role">Responsable technique</h3>
+            <p class="timeline-company"><i data-lucide="building-2"></i> Agence TV Match</p>
             <p>Agence de communication, créateur d'événements. Gestion technique de la production audiovisuelle pour des événements et campagnes de communication : captation, éclairage et son sur le terrain.</p>
           </div>
         </li>
@@ -362,7 +405,8 @@
           <div class="timeline-marker"><i data-lucide="settings"></i></div>
           <div class="timeline-content">
             <span class="timeline-date">1997 — 1999</span>
-            <h3>Chef de section technique — Océanie Télévision (OTV)</h3>
+            <h3 class="timeline-role">Chef de section technique</h3>
+            <p class="timeline-company"><i data-lucide="building-2"></i> Océanie Télévision (OTV)</p>
             <p>Encadrement de l'équipe technique de la chaîne : maintenance des équipements, régie et support technique aux tournages et diffusions.</p>
           </div>
         </li>
@@ -379,61 +423,55 @@
       <div class="formation-grid">
         <div class="formation-col reveal">
           <h3><i data-lucide="hammer"></i> Formation technique et professionnelle</h3>
-          <ul class="formation-list">
-            <li>
-              <span class="formation-year">2006</span>
-              <div>
-                <strong>Formation en production télévisuelle</strong>
-                <p>Spécialisée en montage et réalisation, auprès d'Anja Bombelli, experte suisse du cinéma.</p>
+          <ol class="timeline formation-timeline">
+            <li class="timeline-item">
+              <div class="timeline-marker"><i data-lucide="clapperboard"></i></div>
+              <div class="timeline-content">
+                <span class="timeline-date">2006</span>
+                <h4 class="timeline-role">Formation en production télévisuelle</h4>
+                <p class="timeline-company"><i data-lucide="building-2"></i> Anja Bombelli, experte suisse du cinéma</p>
+                <p>Spécialisée en montage et réalisation.</p>
               </div>
             </li>
-            <li>
-              <span class="formation-year">1998–1999</span>
-              <div>
-                <strong>Diplôme de Technicien Supérieur en Électronique Télévision</strong>
-                <p>Eurelec</p>
+            <li class="timeline-item">
+              <div class="timeline-marker"><i data-lucide="cpu"></i></div>
+              <div class="timeline-content">
+                <span class="timeline-date">1998–1999</span>
+                <h4 class="timeline-role">Diplôme de Technicien Supérieur en Électronique Télévision</h4>
+                <p class="timeline-company"><i data-lucide="building-2"></i> Eurelec</p>
               </div>
             </li>
-            <li>
-              <span class="formation-year">1997–1998</span>
-              <div>
-                <strong>Attestation en Électronique Télévision</strong>
-                <p>Technimad</p>
+            <li class="timeline-item">
+              <div class="timeline-marker"><i data-lucide="file-badge"></i></div>
+              <div class="timeline-content">
+                <span class="timeline-date">1997–1998</span>
+                <h4 class="timeline-role">Attestation en Électronique Télévision</h4>
+                <p class="timeline-company"><i data-lucide="building-2"></i> Technimad</p>
               </div>
             </li>
-            <li>
-              <span class="formation-year">1995–1996</span>
-              <div>
-                <strong>Brevet de Technicien en Radio Récepteur-Émetteur</strong>
-                <p>Eurelec</p>
+            <li class="timeline-item">
+              <div class="timeline-marker"><i data-lucide="radio"></i></div>
+              <div class="timeline-content">
+                <span class="timeline-date">1995–1996</span>
+                <h4 class="timeline-role">Brevet de Technicien en Radio Récepteur-Émetteur</h4>
+                <p class="timeline-company"><i data-lucide="building-2"></i> Eurelec</p>
               </div>
             </li>
-          </ul>
+          </ol>
         </div>
 
         <div class="formation-col reveal">
           <h3><i data-lucide="book-open"></i> Formation générale</h3>
-          <ul class="formation-list">
-            <li>
-              <span class="formation-year">1994</span>
-              <div>
-                <strong>Diplôme de Baccalauréat</strong>
-                <p>Série D</p>
+          <ol class="timeline formation-timeline">
+            <li class="timeline-item">
+              <div class="timeline-marker"><i data-lucide="award"></i></div>
+              <div class="timeline-content">
+                <span class="timeline-date">1994</span>
+                <h4 class="timeline-role">Diplôme de Baccalauréat</h4>
+                <p class="timeline-company"><i data-lucide="building-2"></i> Série D</p>
               </div>
             </li>
-            <li>
-              <span class="formation-year">1991</span>
-              <div>
-                <strong>Diplôme B.E.P.C.</strong>
-              </div>
-            </li>
-            <li>
-              <span class="formation-year">1986</span>
-              <div>
-                <strong>Diplôme C.E.P.E.</strong>
-              </div>
-            </li>
-          </ul>
+          </ol>
         </div>
       </div>
     </div>
@@ -561,14 +599,17 @@
   <div class="container footer-inner">
     <div class="footer-brand">
       <span class="logo-mark" aria-hidden="true">
-        <svg viewBox="0 0 40 40" width="28" height="28">
-          <circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="2.4"/>
-          <polygon points="15,12 30,20 15,28" fill="currentColor"/>
-        </svg>
+        <img src="assets/logo.png" alt="" width="28" height="28">
       </span>
-      <span>Kopenao</span>
+      <span>KOPENAO<span class="logo-suffix">.hery</span></span>
     </div>
-    <p class="footer-text">© <span id="year"></span> Hery Rasolofoarimanana — Kopenao. Tous droits réservés.</p>
+    <div class="footer-texts">
+      <p class="footer-text">© <span id="year"></span> Hery Rasolofoarimanana — Kopenao. Tous droits réservés.</p>
+      <p class="footer-credit">
+        Site conçu &amp; développé par
+        <a href="https://anthony-portfolio-cyan.vercel.app/" target="_blank" rel="noopener">Anthony Mitantsoa Rasolofoarimanana</a>
+      </p>
+    </div>
     <button class="back-to-top" id="back-to-top" type="button" aria-label="Retour en haut de page">
       <i data-lucide="arrow-up"></i>
     </button>
