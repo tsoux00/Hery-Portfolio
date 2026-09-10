@@ -252,27 +252,102 @@ function initCountries() {
 }
 
 /* -------------------------------------------------------------------- */
+/* Effet 3D au survol (tilt)                                              */
+/* -------------------------------------------------------------------- */
+
+// Calculés une seule fois : pas d'effet sur écran tactile (pas de curseur vers
+// lequel s'incliner) ni si l'utilisateur préfère moins d'animations.
+const TILT_ENABLED =
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const TILT_MAX_DEG = 7; // inclinaison volontairement subtile, quelques degrés au plus
+
+/**
+ * Les cartes (.project-card, .design-card) jouent une animation CSS d'entrée
+ * ("card-in", avec fill-mode "both") lorsqu'elles apparaissent dans la grille.
+ * Tant que cette animation reste "accrochée" à l'élément, sa valeur `transform`
+ * de fin ("to") passe AVANT tout style inline ou règle `:hover` normale dans la
+ * cascade CSS (les animations priment sur les déclarations normales de l'auteur)
+ * — ce qui bloque silencieusement aussi bien le survol CSS classique que l'effet
+ * de tilt piloté en JS. On libère donc l'animation dès qu'elle se termine, pour
+ * que la carte redevienne pilotable normalement.
+ */
+function releaseEntranceAnimation(card) {
+  card.addEventListener("animationend", () => { card.style.animation = "none"; }, { once: true });
+}
+
+/**
+ * Ajoute un léger effet d'inclinaison 3D (perspective + rotateX/rotateY) qui
+ * suit la position du curseur sur chaque carte, avec un retour à plat en
+ * douceur à la sortie. À rappeler après chaque re-rendu d'une grille (les
+ * cartes recréées n'ont plus d'écouteurs attachés).
+ */
+function applyTiltEffect(cards) {
+  if (!TILT_ENABLED) return;
+
+  cards.forEach((card) => {
+    releaseEntranceAnimation(card);
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      const rotateY = (x - 0.5) * TILT_MAX_DEG * 2;
+      const rotateX = (0.5 - y) * TILT_MAX_DEG * 2;
+      card.style.transition = "transform 80ms ease-out";
+      card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+    });
+    card.addEventListener("mouseleave", () => {
+      card.style.transition = "transform 500ms cubic-bezier(.22,1,.36,1)";
+      card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)";
+    });
+  });
+}
+
+/* -------------------------------------------------------------------- */
 /* Projets / Showreel                                                     */
 /* -------------------------------------------------------------------- */
 
 /**
  * Tableau des projets — à éditer librement.
- * - id        : identifiant unique (chaîne)
- * - title     : titre affiché sur la carte
- * - category  : une des catégories utilisées dans les filtres
- *               ("Réalisation", "Design 3D", "Institutionnel", "Événementiel")
- * - youtubeId : identifiant de la vidéo YouTube (partie après "v=" dans l'URL)
+ * - id          : identifiant unique (chaîne)
+ * - title       : titre affiché sur la carte
+ * - category    : une des catégories utilisées dans les filtres
+ *                 ("Réalisation", "Design 3D", "Institutionnel", "Événementiel")
+ * - description : courte description du projet
+ * - date        : date du projet ("AAAA-MM-JJ", "AAAA-MM" ou "AAAA" selon la précision
+ *                 connue ; `null` si inconnue), utilisée uniquement comme repère pour
+ *                 ordonner le tableau à la main — l'ordre affiché est l'ordre du tableau,
+ *                 rien n'est trié automatiquement en JS
+ * - youtubeId   : identifiant de la vidéo YouTube (partie après "v=" dans l'URL,
+ *                 ex. "https://www.youtube.com/watch?v=XXXXXXXXXXX"), ou `null` en
+ *                 attendant le lien : une vignette "Vidéo à venir" s'affiche à la place
  *
- * ⚠️ Les identifiants ci-dessous sont des exemples de démonstration.
- *    Remplacez-les par les vrais identifiants de projets de Hery.
+ * Ordre actuel : « Projet Tanana Ezaka 2026 » en premier, puis les autres du plus
+ * récent au plus ancien (à l'exception de « Une minute, une vie — Kapa Pneu », placée
+ * volontairement au milieu du tableau), et « Grande Fête Ciné Extrême » toujours en
+ * dernier — ces trois placements sont demandés par Hery, indépendamment de leur date.
  */
 const PROJECTS = [
-  { id: "p1", title: "Cérémonie officielle — captation multi-caméras", category: "Institutionnel", youtubeId: "dQw4w9WgXcQ" }, // REMPLACER par le vrai lien
-  { id: "p2", title: "Habillage TV & animation 3D", category: "Design 3D", youtubeId: "aqz-KE-bpKQ" }, // REMPLACER par le vrai lien
-  { id: "p3", title: "Reportage institutionnel — Présidence", category: "Institutionnel", youtubeId: "M7lc1UVf-VE" }, // REMPLACER par le vrai lien
-  { id: "p4", title: "Court-métrage — réalisation & montage", category: "Réalisation", youtubeId: "LXb3EKWsInQ" }, // REMPLACER par le vrai lien
-  { id: "p5", title: "Couverture d'événement corporate", category: "Événementiel", youtubeId: "ScMzIvxBSi4" }, // REMPLACER par le vrai lien
-  { id: "p6", title: "Design 3D — rendu produit", category: "Design 3D", youtubeId: "eSKpQOU9pDU" }, // REMPLACER par le vrai lien
+  { id: "p19", title: "Projet Tanana Ezaka 2026", category: "Design 3D", description: "Vidéo de présentation du projet urbain « Tanana Ezaka 2026 ».", date: "2026", youtubeId: "oC9xaex2Vsk" },
+  { id: "p5", title: "Générique — Haiko Zany", category: "Design 3D", description: "Habillage et générique de l'émission « Haiko Zany » (2026).", date: "2026", youtubeId: "efM-FiBysi4" },
+  { id: "p7", title: "KGC 2026", category: "Événementiel", description: "Couverture vidéo de l'événement KGC 2026.", date: "2026", youtubeId: "IvCq_JyyG5o" },
+  { id: "p11", title: "VIVA — Décembre 2025", category: "Réalisation", description: "Rétrospective des programmes de la station VIVA pour décembre 2025.", date: "2025-12", youtubeId: "J9IZwAg9beI" },
+  { id: "p9", title: "Misaotra Barea", category: "Événementiel", description: "Hommage vidéo à l'équipe nationale de football, les Barea de Madagascar.", date: "2025-08-31", youtubeId: "3Qh5tOXSpIU" },
+  { id: "p10", title: "Sommet COI 2025 — Résumé", category: "Institutionnel", description: "Résumé vidéo du Sommet 2025 de la Commission de l'Océan Indien.", date: "2025", youtubeId: "laHpFcdbrTQ" },
+  { id: "p18", title: "Leadership Persons 2025", category: "Événementiel", description: "Couverture vidéo de l'événement « Leadership Persons » (février 2025).", date: "2025-02-22", youtubeId: "I49T8hDq13g" },
+  { id: "p6", title: "Fête Nationale — 26 juin", category: "Institutionnel", description: "Captation officielle des cérémonies de la Fête de l'Indépendance de Madagascar.", date: "2024-06-26", youtubeId: "V2JjruNZqbY" },
+  { id: "p14", title: "JIOI 2023", category: "Institutionnel", description: "Couverture officielle des Jeux des Îles de l'Océan Indien 2023.", date: "2023", youtubeId: "mvn6HvSLFBQ" },
+  { id: "p20", title: "Une minute, une vie — Kapa Pneu", category: "Design 3D", description: "Portrait court format consacré à Kapa Pneu, dans la série « Une minute, une vie ».", date: null, youtubeId: "3ykZH7cnfPo" },
+  { id: "p17", title: "SDLD — Viva Madagascar", category: "Réalisation", description: "Émission produite pour Viva Madagascar (2017).", date: "2017", youtubeId: "xBcfno72bxo" },
+  { id: "p12", title: "Pâques à Andilana Beach", category: "Événementiel", description: "Animations de Pâques à l'Hôtel Andilana Beach Resort, Nosy Be (2016).", date: "2016", youtubeId: "n47B7-D89LA" },
+  { id: "p8", title: "Villaggi Bravo — Le Roi Lion", category: "Événementiel", description: "Spectacle d'animation « The Lion King » à l'Hôtel Andilana Beach, Nosy Be.", date: "2015", youtubeId: "JOKdgL0-yuo" },
+  { id: "p13", title: "Villaggi Bravo — Andilana Beach", category: "Événementiel", description: "Spectacle d'animation à l'Hôtel Andilana Beach Resort, Nosy Be (2015).", date: "2015", youtubeId: "U4LUNi0EM1Y" },
+  { id: "p2", title: "Présentation 3D — CVO Plus", category: "Design 3D", description: "Vidéo de présentation en images de synthèse pour CVO Plus.", date: null, youtubeId: "ocmkOIFJzPU" },
+  { id: "p3", title: "Générique — Yira", category: "Réalisation", description: "Habillage et générique d'ouverture de l'émission « Yira ».", date: null, youtubeId: "N_Esp7ESWis" },
+  { id: "p4", title: "Générique — Cuisine Kopenao", category: "Réalisation", description: "Générique d'ouverture d'une émission culinaire produite par Kopenao.", date: null, youtubeId: "WfeAxvPMw9E" },
+  { id: "p15", title: "Clip de présentation — COI", category: "Institutionnel", description: "Clip de présentation institutionnel de la Commission de l'Océan Indien.", date: null, youtubeId: "IVXE8LtLhaY" },
+  { id: "p16", title: "Spot de sensibilisation", category: "Institutionnel", description: "Spot vidéo de sensibilisation à destination du grand public.", date: null, youtubeId: "YXj9IIvizXM" },
+  { id: "p1", title: "Grande Fête Ciné Extrême — spot", category: "Événementiel", description: "Spot de communication annonçant la Grande Fête Ciné Extrême.", date: null, youtubeId: "kvQ4_J98utQ" },
 ];
 
 function initProjects() {
@@ -286,18 +361,23 @@ function initProjects() {
       const card = document.createElement("article");
       card.className = "project-card" + (isShown ? " is-shown" : "");
       card.dataset.category = project.category;
+      const videoMarkup = project.youtubeId
+        ? `<lite-youtube videoid="${project.youtubeId}" playlabel="Lire : ${escapeHtml(project.title)}"></lite-youtube>`
+        : `<div class="project-placeholder"><i data-lucide="clapperboard"></i><span>Vidéo à venir</span></div>`;
       card.innerHTML = `
         <div class="project-video">
-          <lite-youtube videoid="${project.youtubeId}" playlabel="Lire : ${escapeHtml(project.title)}"></lite-youtube>
+          ${videoMarkup}
         </div>
         <div class="project-body">
           <span class="project-category"><i data-lucide="tag"></i> ${escapeHtml(project.category)}</span>
           <h3 class="project-title">${escapeHtml(project.title)}</h3>
+          <p class="project-desc">${escapeHtml(project.description)}</p>
         </div>
       `;
       grid.appendChild(card);
     });
     if (window.lucide) lucide.createIcons();
+    applyTiltEffect(grid.querySelectorAll(".project-card"));
   }
 
   chips.forEach((chip) => {
@@ -384,6 +464,7 @@ function initDesigns() {
       card.appendChild(thumb);
       card.appendChild(body);
       grid.appendChild(card);
+      releaseEntranceAnimation(card);
     });
     if (window.lucide) lucide.createIcons();
   }

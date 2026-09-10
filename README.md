@@ -35,7 +35,7 @@ La galerie de projets est générée depuis un tableau JavaScript, dans `js/scri
 repérable par le commentaire `PROJECTS`. Chaque entrée ressemble à ceci :
 
 ```js
-{ id: "p1", title: "Titre du projet", category: "Réalisation", youtubeId: "XXXXXXXXXXX" }
+{ id: "p1", title: "Titre du projet", category: "Réalisation", description: "Courte description.", date: "2025-08-31", youtubeId: "XXXXXXXXXXX" }
 ```
 
 Pour remplacer une vidéo :
@@ -43,17 +43,27 @@ Pour remplacer une vidéo :
 1. Récupérer l'identifiant YouTube de la vidéo (la partie après `v=` dans l'URL
    YouTube, ex : `https://www.youtube.com/watch?v=XXXXXXXXXXX`).
 2. Remplacer la valeur de `youtubeId` par ce nouvel identifiant.
-3. Adapter `title` et `category` si besoin.
+3. Adapter `title`, `description`, `category` et `date` si besoin.
 4. `category` doit être l'une des valeurs suivantes pour rester compatible avec les
    filtres : `Réalisation`, `Design 3D`, `Institutionnel`, `Événementiel`.
+
+`date` (format `"AAAA-MM-JJ"`, `"AAAA-MM"` ou `"AAAA"` selon la précision connue, ou
+`null` si inconnue) n'est qu'un repère de lecture : **l'ordre affiché sur le site est
+l'ordre des entrées dans le tableau**, rien n'est trié automatiquement. Pour changer
+l'ordre d'affichage, déplacer l'entrée à la position voulue dans le tableau.
+
+Un projet sans vidéo pour l'instant peut être ajouté avec `youtubeId: null` : une
+vignette « Vidéo à venir » s'affiche automatiquement à la place du lecteur, le temps
+d'ajouter le vrai lien.
 
 Pour ajouter ou supprimer un projet, ajouter ou retirer une entrée du tableau — aucune
 autre modification n'est nécessaire, la grille et les filtres se mettent à jour
 automatiquement.
 
-Les identifiants vidéo actuellement dans le tableau sont des **exemples de
-démonstration** (marqués `// REMPLACER par le vrai lien`) : à remplacer par les vrais
-projets avant mise en ligne.
+Les vidéos se lisent directement sur la page (lecteur intégré via `lite-youtube-embed`),
+sans redirection vers YouTube. Au survol, chaque carte s'incline légèrement en 3D en
+suivant le curseur (effet désactivé sur écran tactile et si l'utilisateur préfère moins
+d'animations, voir `applyTiltEffect` dans `js/script.js`).
 
 ## Mettre à jour la section Design graphique
 
