@@ -89,6 +89,12 @@ function initScrollReveal() {
     return;
   }
 
+  // threshold bas (et non un pourcentage élevé de la hauteur de la cible) :
+  // certains éléments observés (ex. la grille de projets) peuvent devenir très
+  // hauts (plusieurs milliers de pixels avec de nombreuses cartes empilées en
+  // une colonne sur mobile) — un threshold comme 0.15 exigerait alors qu'une
+  // portion plus grande que la fenêtre elle-même soit visible en même temps,
+  // ce qui n'arrive jamais, et l'élément ne se révèle donc jamais.
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -98,7 +104,7 @@ function initScrollReveal() {
         }
       });
     },
-    { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+    { threshold: 0, rootMargin: "0px 0px -60px 0px" }
   );
 
   items.forEach((el) => observer.observe(el));
