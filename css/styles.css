@@ -524,7 +524,7 @@ svg { display: block; }
 .lang-list { display: flex; flex-direction: column; gap: 14px; }
 .lang-item {
   display: grid;
-  grid-template-columns: 130px 1fr 50px;
+  grid-template-columns: 130px 1fr auto;
   align-items: center;
   gap: 14px;
 }
@@ -566,9 +566,10 @@ svg { display: block; }
   font-weight: 700;
   color: var(--primary-strong);
   background: var(--primary-soft);
-  padding: 3px 9px;
+  padding: 3px 10px;
   border-radius: 999px;
   text-align: center;
+  white-space: nowrap;
 }
 
 .interest-list {
@@ -1190,7 +1191,7 @@ svg { display: block; }
 @media (max-width: 480px) {
   .hero-stats { gap: 22px; }
   .contact-form { padding: 24px; }
-  .lang-item { grid-template-columns: 1fr 40px; grid-template-areas: "name tag" "bar bar"; row-gap: 8px; }
+  .lang-item { grid-template-columns: 1fr auto; grid-template-areas: "name tag" "bar bar"; row-gap: 8px; }
   .lang-name { grid-area: name; }
   .lang-tag { grid-area: tag; justify-self: end; }
   .lang-level { grid-area: bar; }
