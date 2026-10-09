@@ -559,8 +559,7 @@ svg { display: block; }
   transition: width 900ms cubic-bezier(.16,1,.3,1);
 }
 .lang-item[data-level] { }
-.lang-level[aria-label="Niveau C1"] .lang-level-fill.is-visible { width: 80%; }
-.lang-level[aria-label="Niveau A2"] .lang-level-fill.is-visible { width: 35%; }
+.lang-level[aria-label="Niveau Courant"] .lang-level-fill.is-visible { width: 85%; }
 .lang-level[aria-label="Langue maternelle"] .lang-level-fill.is-visible { width: 100%; }
 .lang-tag {
   font-size: 0.78rem;
@@ -628,6 +627,35 @@ svg { display: block; }
 }
 .mini-card i { width: 22px; height: 22px; color: var(--accent-strong); flex-shrink: 0; margin-top: 2px; }
 .mini-card p { margin: 4px 0 0; font-size: 0.9rem; }
+
+/* Compétences clés : liste à puces, sur deux colonnes à partir d'une largeur
+   suffisante pour rester compacte malgré le nombre d'éléments. */
+.skills-checklist {
+  columns: 2;
+  column-gap: 28px;
+  margin-top: 14px;
+}
+.skills-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  break-inside: avoid;
+  margin-bottom: 12px;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+.skills-checklist i { width: 16px; height: 16px; color: var(--primary); flex-shrink: 0; margin-top: 3px; }
+
+/* Faits marquants : rangée de cartes pleine largeur sous les deux colonnes
+   de la section À propos. */
+.highlights-title { margin-top: 56px; }
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+.highlights-grid .mini-card { margin-top: 0; height: 100%; }
 
 /* ==========================================================================
    Timeline (parcours)
@@ -1120,6 +1148,7 @@ svg { display: block; }
   .portrait-badge { right: calc(50% - 90px); }
   .about-grid, .formation-grid, .contact-grid { grid-template-columns: 1fr; }
   .project-grid, .design-grid { grid-template-columns: repeat(2, 1fr); }
+  .highlights-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* Le menu principal compte désormais 8 entrées : on bascule sur le menu
@@ -1151,6 +1180,11 @@ svg { display: block; }
   .timeline { padding-left: 36px; }
   .timeline-marker { left: -53px; width: 30px; height: 30px; }
   .timeline-marker i { width: 14px; height: 14px; }
+}
+
+@media (max-width: 560px) {
+  .skills-checklist { columns: 1; }
+  .highlights-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
